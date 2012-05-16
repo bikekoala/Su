@@ -32,10 +32,6 @@ class Su_Ctrl_Cycle
 	 */
 	protected $response;
 	/**
-	 * 只传递给smarty的变量集合 不进行接口输出
-	 */
-	protected $autoResponse;
-	/**
 	 * 对象容器 registerObject|retrieveObject 方法使用的内部存储空间
 	 */
 	protected $objectContainer;
@@ -129,21 +125,21 @@ class Su_Ctrl_Cycle
 	/**
 	 * 设置输出内容 如果只传递一个参数可以覆盖整个数组
 	 */
-	public function setResponse($key, $val = null, $auto = false)
+	public function setResponse($key, $val = null)
 	{
 		if (func_num_args() == 1) {
 			$this->response = $key;
 		} else {
-			$auto ? $this->autoResponse[$key] = $val : $this->response[$key] = $val;
+			$this->response[$key] = $val;
 		}
 	}
 
 	/**
 	 * getResponse 获取返回对象
 	 */
-	public function getResponse($auto = false)
+	public function getResponse()
 	{
-		return $auto ? $this->autoResponse : $this->response;
+		return $this->response;
 	}
 
 	/**
