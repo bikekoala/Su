@@ -38,7 +38,7 @@ final class Su_Db extends PDO
 	}
 
 	/**
-	 * 根据变量数组组合sql复制语句
+	 * 根据变量数组组合sql赋值语句
 	 */
 	public static function genSqlValueStr($keys, &$vals)
 	{
@@ -52,7 +52,7 @@ final class Su_Db extends PDO
 	}
 
 	/**
-	 * 给变量绑定数据
+	 * 根据变量数组绑定sql数据
 	 */
 	public static function genSqlBindValue(PDOStatement $sth, $keys, &$vals)
 	{
