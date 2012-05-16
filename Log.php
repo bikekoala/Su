@@ -125,13 +125,8 @@ class Su_Log
 
 		// 格式化日志信息   
 		$str = '';
-		if ( ! isset($this->conf['handle']) || $this->conf['handle'] == 'default') {
-			$str .= '"' . date('Y-m-d H:i:s') . '" ' . $this->conf['name'] . ' ' . self::$level[$level] . ' ';
-			$str .= '"' . addslashes(isset($args) ? vsprintf($message, $args) : $message) . '"';
-			$str .= "\n";
-		} else {
-			$str .= call_user_func_array($this->conf['handle'] . '::format', array($this->conf, $level, $message, $args));
-		}
+		$handle = isset($this->conf['handle']) ? $this->conf['handle'] : 'Su_Log_Handler_Base';
+		$str = call_user_func_array($handle . '::format', array($this->conf, $level, $message, $args));
 
 		// 写入的处理, 如果是php支持的流方式 php:// 和文件系统直接写入 如果是设置处理类直接调用 
 		if ( ! isset($this->conf['write'])) {
