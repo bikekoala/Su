@@ -45,7 +45,7 @@ abstract class Su_Config implements ArrayAccess
 	public function offsetSet($key, $val)
 	{
 		$key = $val = null;
-		throw new Su_Config_Exc('no support offsetSet', 400);
+		throw new Su_Exc('no support offsetSet', 400);
 	}
 
 	/**
@@ -54,7 +54,7 @@ abstract class Su_Config implements ArrayAccess
 	public function offsetUnset($key)
 	{
 		$key = null;
-		throw new Su_Config_Exc('no support offsetUnset', 400);
+		throw new Su_Exc('no support offsetUnset', 400);
 	}
 
 	/**
