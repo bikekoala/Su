@@ -67,7 +67,7 @@ class Su_Ctrl_Phase_Output implements Su_Ctrl_Phase_Interface
 			$format = $this->cycle->getMeta(Su_Const::META_FORMAT);
 		} elseif (isset($output['format'][$agent])) {
 			$format = $output['format'][$agent];
-		} elseif {
+		} else {
 			$format = $output['format']['default'];
 		}
 

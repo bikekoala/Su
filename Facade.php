@@ -27,7 +27,7 @@ class Su_Facade
 	{
 		define('ENVIRONMENT', self::$conf['environment']);
 		// 注册自动加载函数
-		sql_autoload_register('Su_Facade::loadClass');
+		spl_autoload_register('Su_Facade::loadClass');
 		// 参考 http://cn2.php.net/manual/zh/errorfunc.constants.php
 		$errorType = ENVIRONMENT === 'development' ? E_ALL | E_STRICT : (E_ALL & ~E_NOTICE) | E_STRICT;
 		// 注册错误抓捕函数
@@ -42,12 +42,17 @@ class Su_Facade
 	 */
 	public static function loadClass($className, $dir = null)
 	{
-		$class = strtolower($className);
+		// 如果这个类已经存在，不加载，返回
+		if (class_exists($className, false) || interface_exists($className, false)) {
+			return true;
+		}
+
 		// 引入smarty,同样自动加载机制
+		$class = strtolower($className);
 		if (substr($class, 0, 16) === 'smarty_internal_' || $class === 'smarty_security') {
 			$file = 'Su/Tpl/sysplugins/' . $class . '.php';
 		} else {
-			$file = str_replace('_', '/', $class) . '.php';
+			$file = str_replace('_', '/', $className) . '.php';
 		}
 		if ($dir) {
 			include $dir . '/' . $file;
@@ -76,7 +81,7 @@ class Su_Facade
 			}
 			Su_Log::getLogger(self::$conf['error_log'])->log($level, "phperror:\nerrno:%d\nmessage:%s\nfile:%s:%d\n\n", $errno, $errstr, $errfile, $errline);
 		} else {
-			echo sprintf("phperror:\nerrno:%d\nmessage:%s\nfile:%s:%d\n\n", $errno, $errstr, $errfile, $errline);
+			echo sprintf(nl2br("phperror:\nerrno:%d\nmessage:%s\nfile:%s:%d\n\n"), $errno, $errstr, $errfile, $errline);
 		}
 		$errorType = ENVIRONMENT === 'development' ? E_ALL | E_STRICT : (E_ALL & ~E_NOTICE) | E_STRICT;
 		set_error_handler('Su_Facade::errorHandler', $errorType);
