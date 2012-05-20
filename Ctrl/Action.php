@@ -43,7 +43,6 @@ abstract class Su_Ctrl_Action
 		$this->request = $cycle->getRequest();
 		$this->auth = $cycle->getMeta(Su_Const::META_AUTH);
 		isset($this->conf['error_log']) && $this->errorLog = Su_Log::getLogger($this->conf['error_log']);
-		$this->response('_action', get_class($this), true);
 	}
 
 	/**
