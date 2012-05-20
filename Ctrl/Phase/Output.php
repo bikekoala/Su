@@ -86,7 +86,7 @@ class Su_Ctrl_Phase_Output implements Su_Ctrl_Phase_Interface
 			case Su_Const::FT_BINARY :
 				return $this->outputBinary();
 			default :
-				throw new Su_Ctrl_Phase_Exc('output format error' . $format, 500);
+				throw new Su_Exc('output format error' . $format, 500);
 		}
 	}
 
