@@ -10,10 +10,8 @@ class Su_Ctrl_Front
 	protected $defautClass = array(
 			'INPUT' => 'Su_Ctrl_Phase_Input',
 			'ADAPTER' => 'Su_Ctrl_Phase_Adapter',
-			'AUTH' => 'Su_Phase_Auth',
 			'DISPATCH' => 'Su_Ctrl_Phase_Dispatch',
 			'OUTPUT' => 'Su_Ctrl_Phase_Output',
-			'LOGGER' => 'Su_Ctrl_Phase_Logger'
 			);
 
 	/**

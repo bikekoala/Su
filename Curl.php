@@ -73,10 +73,7 @@ class Su_Curl
 					throw new Su_Exc('json_decode error' . $data, $this->lastInfo['http_code']);
 				}
 		}
-		if ($result['code'] != 200) {
-			throw new Su_Exc($result['message'], $result['code']);
-		}
-		return $result['data'];
+		return $result;
 	}
 
 	/**

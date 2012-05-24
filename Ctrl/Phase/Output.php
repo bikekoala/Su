@@ -186,7 +186,7 @@ class Su_Ctrl_Phase_Output implements Su_Ctrl_Phase_Interface
 		if ($fault = $this->cycle->getMeta(Su_Const::META_FAULT)) {
 			return $fault;
 		} else {
-			return array('code' => 200, 'data' => $this->cycle->getResponse());
+			return $this->cycle->getResponse();
 		}
 	}
 
