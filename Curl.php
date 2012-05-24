@@ -58,7 +58,7 @@ class Su_Curl
 	/**
 	 * 接口请求处理,支持serialize&json
 	 */
-	public function rest($fields = null, $method = 'post', $format)
+	public function rest($fields = null, $method = 'post', $format = null)
 	{
 		$data = $method == 'post' ? $this->post($fields) : $this->get($fields);
 		switch ($format) {
