@@ -30,7 +30,7 @@ class Su_Curl
 	/**
 	 * 发送post请求的快捷方法
 	 */
-	public function post($fields)
+	public function post($fields = null)
 	{
 		curl_setopt($this->ch, CURLOPT_POST, count($fields));
 		curl_setopt($this->ch, CURLOPT_POSTFIELDS, $fields);
