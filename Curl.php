@@ -61,6 +61,8 @@ class Su_Curl
 	public function rest($fields = null, $method = 'post', $format = null)
 	{
 		$data = $method == 'post' ? $this->post($fields) : $this->get($fields);
+		$data = preg_replace('/[^\x20-\xff]*/', '', $data); //清除不可见字符
+		$data = iconv('utf-8', 'utf-8//ignore', $data); //UTF-8转码
 		switch ($format) {
 			case Su_Const::FT_SERIAL :
 				if (false === ($result = unserialize($data))) {
